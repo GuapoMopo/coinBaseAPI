@@ -25,11 +25,11 @@ app.config.update(
     SESSION_COOKIE_SAMESITE='Lax',
 )
 
-def get_db():
+def get_db(): #enter MySQL login
     db = MySQLdb.connect(
-        host="dursley.socs.uoguelph.ca",
-        user="wasilewp",
-        passwd="1007938",
+        host="",
+        user="",
+        passwd="",
     )
 
     return db
@@ -61,7 +61,7 @@ def index(name=None):
         #return 'Logged in as %s' % escape(session['username'])
     #return 'You are not logged in'
     #else display the login page
-    return render_template('Lab10Template.html', name=name)
+    return render_template('coinBaseTemplate.html', name=name)
 
 
 @app.route('/coinBaseSearch', methods=['POST'])
@@ -96,7 +96,7 @@ def coinBaseSearch():
 
 @app.route('/coinMarketCap', methods=['POST'])
 def coinMarketCap():
-    apiKey = 'b54bcf4d-1bca-4e8e-9a24-22ff2c3d462c'
+    apiKey = '' #enter api key
 
     crypto = request.get_json()
     try:
@@ -114,7 +114,7 @@ def coinMarketCap():
     }
     headers = {
     'Accepts': 'application/json',
-    'X-CMC_PRO_API_KEY': 'b54bcf4d-1bca-4e8e-9a24-22ff2c3d462c',
+    'X-CMC_PRO_API_KEY': '',
     }
 
     session = Session()
@@ -150,7 +150,6 @@ def loginOrCreate():
                     session['username'] = userName
 
                     return redirect(url_for("index"))
-                    #return render_template("lab4Template.html")
                 else:
                     return jsonify(error='BadPass')
             else:
@@ -161,7 +160,6 @@ def loginOrCreate():
                 session['username'] = userName
                 session['flag'] = 0
                 return redirect(url_for("index"))
-                #return render_template("lab4Template.html")
 
 
     return
@@ -171,7 +169,6 @@ def loginOrCreate():
 def logout():
     session.pop("username", None)
     return redirect(url_for("index"))
-    #return render_template("lab4Template.html")
 
 @app.route('/user',methods=['POST','DELETE','GET','PUT'])
 def user():
@@ -181,7 +178,6 @@ def user():
     cursor = dataB.cursor()
 
     if request.is_json:
-        print('we got a json')
         if request.method == 'POST':
             print('create')
             theUser = request.get_json()
@@ -230,7 +226,6 @@ def user():
                 dataB.commit()
                 return jsonify(error='success',usrn=userName)
             else:
-                print('doesn\'t exist')
                 return jsonify(error='invalid')
 
     if request.method == 'GET':
