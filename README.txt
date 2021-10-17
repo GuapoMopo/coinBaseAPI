@@ -12,5 +12,5 @@ example crypto's
     ...
 
 TO USE: Theres a searchable drop down, which you can choose a crypto from and you can see the Spot, Buy, and Sell price of the crypto.
-    So I added a second api to get more information for this lab, I made a call to it and get back a ton of data, I display the data in a table on my webpage.
+    So I added a second api to get more information, I made a call to it and get back a ton of data, I display the data in a table on my webpage.
     The data returned is information about crypto currencies, you can return anywhere from 1-2000 that will go in a table format
